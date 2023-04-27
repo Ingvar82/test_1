@@ -1,0 +1,20 @@
+#!groovy
+//Check tets_1 properties
+properties([disableConcurrentBuilds()])
+
+pipeline{
+    agent{
+        label 'master'
+    }
+    options{
+        buildDiscarder(logRotator(numToKeepStr: '10',artifactNumToKeepStr: '1'))
+        timestamps()
+    }
+    stages{
+        stage("First Step"){
+            steps{
+                sh 'ssh root@test_1 \'hostname\''
+            }
+        }
+    }
+}
