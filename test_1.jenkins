@@ -3,9 +3,10 @@
 properties([disableConcurrentBuilds()])
 
 pipeline{
-    agent{
-        label 'master'
-    }
+    agent any
+    //{
+    //    label 'master'
+    //}
     options{
         buildDiscarder(logRotator(numToKeepStr: '10',artifactNumToKeepStr: '1'))
         timestamps()
@@ -15,6 +16,13 @@ pipeline{
             steps{
                 sh 'ssh root@test_1 \'hostname\''
             }
+        }
+        stage("Second Step"){
+            steps{
+                sh 'pwd'
+                sh 'ls -al'
+            }
+            
         }
     }
 }
