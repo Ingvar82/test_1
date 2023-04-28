@@ -8,7 +8,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10',artifactNumToKeepStr: '1'))
         timestamps()
     }
-    triggers {pollSCM ('*****')}
+    //triggers { 
+    //    pollSCM ('*****') 
+    //}
     stages {
         stage('create docker image') { 
             steps { 
