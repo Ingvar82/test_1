@@ -4,9 +4,11 @@ properties([disableConcurrentBuilds()])
 
 pipeline { 
     agent any 
+    
     triggers { 
         pollSCM ('* * * * *') 
     }
+
     options{
         buildDiscarder(logRotator(numToKeepStr: '10',artifactNumToKeepStr: '1'))
         timestamps()
@@ -18,6 +20,8 @@ pipeline {
                 echo "===================== start building image =========================="
                 dir ('docker'){
                     sh 'docker build -t docker/latest .'
+                    //чтобы пушить image doker Docker hub 
+                    //sh 'docker build -t ingvar82/docker/latest .'
                 }
             }
         }        
