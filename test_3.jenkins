@@ -19,11 +19,11 @@ pipeline {
             steps { 
                 echo "===================== start building image =========================="
                 dir ('docker'){
-                    sh 'docker build -t alpine:latest .'
+                    //sh 'docker build -t alpine:latest .'
                     
                     //чтобы пушить image doker в Docker hub
                     //'docker push ingvar1982/test:' 
-                    //sh 'docker build -t ingvar82/docker/latest .'
+                    sh 'docker build -t ingvar1982/test:alpine:latest .'
                 }
             }
         }        
