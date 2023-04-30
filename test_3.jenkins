@@ -15,16 +15,34 @@ pipeline {
     }
     
     stages {
+        stage('docker login'){
+            steps { 
+                echo "===================== docker login =========================="
+                withCredendials([usernamePassword(credetialsId: 'dockerhub_ingvar1982',usernameVariable: 'USERNAME',password: 'PASSWORD')]){
+                    sh"""
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }    
+
         stage('create docker image') { 
             steps { 
                 echo "===================== start building image =========================="
                 dir ('docker'){
                     //sh 'docker build -t alpine:latest .'
-                    
-                    //чтобы пушить image doker в Docker hub
-                    //'docker push ingvar1982/test:' 
-                    sh 'docker build -t ingvar1982/test:latest .'
+                    sh 'docker build -t alpine:latest .'
                 }
+            }
+        }
+
+        stage('docker push'){
+            steps{
+                echo "===================== start building image =========================="
+                //чтобы пушить image doker в Docker hub
+                sh """
+                'docker push ingvar1982/test:alpine' 
+                """
             }
         }        
     }
