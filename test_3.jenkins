@@ -10,7 +10,7 @@ pipeline {
     }
 
     options{
-        buildDiscarder(logRotator(numToKeepStr: '10',artifactNumToKeepStr: '1'))
+        buildDiscarder(logRotator(numToKeepStr: '2',artifactNumToKeepStr: '1'))
         timestamps()
     }
     
@@ -40,7 +40,7 @@ pipeline {
                 echo "===================== start building image =========================="
                 //чтобы пушить image doker в Docker hub
                 sh """
-                docker push ingvar1982/test:alpine 
+                docker push ingvar1982/test:latest 
                 """
             }
         }        
