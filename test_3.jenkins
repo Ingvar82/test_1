@@ -23,7 +23,7 @@ pipeline {
                     
                     //чтобы пушить image doker в Docker hub
                     //'docker push ingvar1982/test:' 
-                    sh 'docker build -t ingvar1982/test:alpine:latest .'
+                    sh 'docker build -t ingvar1982/test:latest .'
                 }
             }
         }        
