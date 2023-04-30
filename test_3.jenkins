@@ -18,7 +18,8 @@ pipeline {
         stage('docker login'){
             steps { 
                 echo "===================== docker login =========================="
-                withCredendials([usernamePassword(credetialsId: 'dockerhub_ingvar1982',usernameVariable: 'USERNAME',password: 'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'dokerhub_ingvar1982', usernameVariable: 'USERNAME', password: 'PASSWORD')]){
+                //withCredendials([usernamePassword(credetialsId: 'dockerhub_ingvar1982',usernameVariable: 'USERNAME',password: 'PASSWORD')]){
                     sh"""
                     docker login -u $USERNAME -p $PASSWORD
                     """
