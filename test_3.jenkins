@@ -19,9 +19,6 @@ pipeline {
             steps { 
                 echo "===================== docker login =========================="
                 withCredentials([usernamePassword(credentialsId: 'dokerhub_ingvar1982', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                    echo "$USERNAME"
-                    echo "$PASSWORD"
-                //withCredendials([usernamePassword(credetialsId: 'dockerhub_ingvar1982',usernameVariable: 'USERNAME',password: 'PASSWORD')]){
                     sh"""
                     docker login -u $USERNAME -p $PASSWORD
                     """
@@ -33,7 +30,6 @@ pipeline {
             steps { 
                 echo "===================== start building image =========================="
                 dir ('docker'){
-                    //sh 'docker build -t alpine:latest .'
                     sh 'docker build -t alpine:latest .'
                 }
             }
@@ -44,7 +40,7 @@ pipeline {
                 echo "===================== start building image =========================="
                 //чтобы пушить image doker в Docker hub
                 sh """
-                'docker push ingvar1982/test:alpine' 
+                docker push ingvar1982/test:alpine 
                 """
             }
         }        
