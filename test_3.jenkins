@@ -40,7 +40,7 @@ pipeline {
                 echo "===================== start building image =========================="
                 //чтобы пушить image doker в Docker hub
                 sh """
-                docker push ingvar1982/test:latest 
+                docker push alpine:latest 
                 """
             }
         }        
